@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,27 +56,27 @@
     <div class="nav-right">
       <a href="/Zzqyoung1121.github.io/" class="nav-item ">
         <i class="fas fa-home"></i>
-        <span>Home</span>
+        <span>首页</span>
       </a>
       <a href="/Zzqyoung1121.github.io/archives/" class="nav-item active">
         <i class="fas fa-archive"></i>
-        <span>Archives</span>
+        <span>归档</span>
       </a>
       <a href="/Zzqyoung1121.github.io/categories/" class="nav-item ">
         <i class="fas fa-folder"></i>
-        <span>Categories</span>
+        <span>分类</span>
       </a>
       <a href="/Zzqyoung1121.github.io/tags/" class="nav-item ">
         <i class="fas fa-tags"></i>
-        <span>Tags</span>
+        <span>标签</span>
       </a>
       <a href="/Zzqyoung1121.github.io/search/" class="nav-item ">
         <i class="fas fa-search"></i>
-        <span>Search</span>
+        <span>搜索</span>
       </a>
       <a href="/Zzqyoung1121.github.io/about/" class="nav-item ">
         <i class="fas fa-info-circle"></i>
-        <span>About</span>
+        <span>关于</span>
       </a>
     </div>
   </nav>
@@ -251,7 +251,7 @@
     <!-- 全局配置 -->
     <script>
       window.HEXO_CONFIG = {
-        language: "en",
+        language: "zh-CN",
         root: "/Zzqyoung1121.github.io/"
       };
       
@@ -312,22 +312,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
 <script>
   // 将语言文件中的翻译传递给前端
   window.HEXO_CONFIG = {
-    language: "en",
-    search_placeholder: "Type to search...",
-    search_no_results: "No results found",
-    search_result: "result",
-    search_results: "results",
-    search_results_found: "Found undefined results",
-    search_in: "Search in",
-    search_in_title: "Title",
-    search_in_content: "Content",
-    search_in_tags: "Tags",
-    search_in_categories: "Categories",
-    search_filters: "Search Filters",
-    search_recent: "Recent Searches",
-    search_clear: "Clear",
-    search_loading: "Loading...",
-    search_error: "Error loading search data"
+    language: "zh-CN",
+    search_placeholder: "输入关键词搜索...",
+    search_no_results: "未找到相关结果",
+    search_result: "نتيجة",
+    search_results: "搜索结果",
+    search_results_found: "找到 undefined 个结果",
+    search_in: "搜索范围",
+    search_in_title: "标题",
+    search_in_content: "内容",
+    search_in_tags: "标签",
+    search_in_categories: "分类",
+    search_filters: "搜索过滤器",
+    search_recent: "最近搜索",
+    search_clear: "清除",
+    search_loading: "加载中...",
+    search_error: "加载搜索数据时出错"
   };
 </script>
 
@@ -346,5 +346,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
       });
     </script>
-  </body>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
