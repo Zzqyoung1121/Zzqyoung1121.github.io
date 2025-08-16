@@ -151,7 +151,7 @@
           <div class="tag-item active">
             <i class="fas fa-tag"></i>
             <a href="">题解</a>
-            <span class="count">(1)</span>
+            <span class="count">(2)</span>
           </div>
         
       </div>
@@ -173,7 +173,7 @@
           <i class="fas fa-tag"></i>
           Tag: 题解
         </h1>
-        <span class="tag-count">1 posts</span>
+        <span class="tag-count">2 posts</span>
       </div>
 
       <div class="posts-container">
@@ -207,6 +207,40 @@ P5788 【模板】单调栈
             
             <div class="post-footer">
               <a href="../../2025/08/04/%E9%A2%98%E8%A7%A3%EF%BC%9AP5788%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88/" class="read-more">
+                <i class="fas fa-code"></i>
+                Read More
+              </a>
+            </div>
+          </div>
+        
+          <div class="post-card">
+            <div class="post-header">
+              <i class="fas fa-file-alt"></i>
+              <span class="post-title">
+                <a href="../../2025/03/12/%E9%A2%98%E8%A7%A3%EF%BC%9AP1439%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/">题解：P1439 【模板】最长公共子序列</a>
+              </span>
+            </div>
+            
+            <div class="post-meta">
+              <span class="date">
+                <i class="fas fa-calendar-alt"></i>
+                2025-03-12
+              </span>
+              
+            </div>
+            
+            <div class="post-excerpt">
+              P1439 【模板】最长公共子序列
+思路
+对于两个为自然数 $1,2,\ldots,n$ 的排列，他们其中的元素是一样的，只有顺序不同。则可以通过结构体，记录每一个 $a_i$ 的下标,在对 $a_i$ 进行结构体排序。
+然后，就把问题转化成了 $ a[b[i]].id $ 的  LIS 。
+时间复杂度 $ O(n*(\log_2 n)) $
+代码
+123456789101112131415161...
+            </div>
+            
+            <div class="post-footer">
+              <a href="../../2025/03/12/%E9%A2%98%E8%A7%A3%EF%BC%9AP1439%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/" class="read-more">
                 <i class="fas fa-code"></i>
                 Read More
               </a>

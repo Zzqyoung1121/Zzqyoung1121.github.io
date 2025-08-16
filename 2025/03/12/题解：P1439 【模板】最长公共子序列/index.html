@@ -3,7 +3,7 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>题解：P5788 【模板】单调栈 | Hexo</title>
+  <title>题解：P1439 【模板】最长公共子序列 | Hexo</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../../css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -142,7 +142,7 @@
         <span>TABLE OF CONTENTS</span>
       </div>
       <div class="section-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">单调栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E9%9D%A2%E6%8F%8F%E8%BF%B0"><span class="toc-text">题面描述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%BC%95%E5%85%A5"><span class="toc-text">算法引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="toc-text">算法详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%BC%94%E7%A4%BA"><span class="toc-text">算法演示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="toc-text">AC代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0%E2%80%93%E6%9B%B4%E6%94%B9%E8%AE%B0%E5%BD%95"><span class="toc-text">后记–更改记录</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">P1439 【模板】最长公共子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LIS"><span class="toc-text">LIS</span></a></li></ol></li></ol></li></ol></li></ol>
       </div>
     </div>
     
@@ -174,18 +174,18 @@
     <div class="tab-bar">
       <div class="tab active">
         <i class="fas fa-file-alt"></i>
-        <span>题解：P5788 【模板】单调栈.md</span>
+        <span>题解：P1439 【模板】最长公共子序列.md</span>
       </div>
     </div>
     
     <div class="content-area">
       <article class="post-content">
         <div class="post-header">
-          <h1>题解：P5788 【模板】单调栈</h1>
+          <h1>题解：P1439 【模板】最长公共子序列</h1>
           <div class="post-meta">
             <span class="date">
               <i class="fas fa-calendar-alt"></i>
-              2025-08-04
+              2025-03-12
             </span>            
             
               <span class="tags">
@@ -199,84 +199,25 @@
         </div>
         
         <div class="post-body vscode-markdown">
-          <h1>单调栈</h1>
-<p><a target="_blank" rel="noopener" href="https://oiwiki.org/ds/monotonous-stack/">单调栈-OI wiki</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5788">P5788 【模板】单调栈</a></p>
-<h3 id="题面描述">题面描述</h3>
-<p>给出项数为 $n$ 的整数数列 $a_{1 \dots n}$。</p>
-<p>定义函数 $f(i)$ 代表数列中第 $i$ 个元素之后第一个大于 $a_i$ 的元素的<strong>下标</strong>，即 $f(i)=\min_{i&lt;j\leq n, a_j &gt; a_i} {j}$。若不存在，则 $f(i)=0$。</p>
-<p>试求出 $f(1\dots n)$。</p>
-<p>对于 $100%$ 的数据，$1 \le n\leq 3\times 10^6$，$1\leq a_i\leq 10^9$。</p>
-<h2 id="算法引入">算法引入</h2>
-<p>单调栈，顾名思义，就是站内保证单调的栈（数据结构）。</p>
-<p>根据这个（优美的）性质，我们不难发现，可以用它在 $ O(n)$ 的时间复杂度内处理一类<strong>常见</strong>的问题：</p>
-<blockquote>
-<p>定义函数 $f(i)$ 代表数列中第 $i$ 个元素之后（前）第一个大于（或小于） $a_i$ 的元素的<strong>下标</strong>，即 $f(i)=\min_{i&lt;j\leq n, a_j &gt; a_i} {j}$。若不存在，则 $f(i)=0$。</p>
-</blockquote>
-<blockquote>
-<p>试求出 $f(1\dots n)$。</p>
-</blockquote>
-<p>–来源：P5788 【模板】单调栈（内容有所修改）</p>
-<h2 id="算法详解">算法详解</h2>
-<p>根据单调栈内的顺序，我们可以分为两种：</p>
-<ul>
-<li>单调递增栈</li>
-<li>单调递减栈</li>
-</ul>
-<p>e.g.</p>
-<p>对于本题（维护第 $i$ 个元素之后（前）第一个大于（或小于） $a_i$ 的元素的<strong>下标</strong>），</p>
-<p>我们考虑维护一个单调下降的栈，从后往前枚举每一个  $a_i$ ，找到栈中第一个比 $a_i$ 大的位置，保证栈的单调性。</p>
-<p><strong>我们是将下标压栈，不是将元素压栈，但是是以元素作为标准比较</strong></p>
-<h4 id="算法演示">算法演示</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">5<br>1 4 2 3 5<br></code></pre></td></tr></table></figure>
-<p>对于这个样例</p>
-<hr>
-<p>$i=1$:</p>
-<p>我们考虑将 $5$ 压栈的位置，发现可以将 $5$ 放在栈顶，因为此时栈为空，所以 $f(5)=-1$，然后将 $5$ 压栈</p>
-<p>栈中：$5(5)$</p>
-<hr>
-<p>$i=2$:</p>
-<p>我们考虑将 $4$ 压栈的位置，发现可以将 $4$ 放在栈顶，此时栈顶为 $5$，所以 $f(4)=5$，然后将 $4$ 压栈</p>
-<p>栈中：$5(5),4(3)$</p>
-<hr>
-<p>$i=3$:</p>
-<p>我们考虑将 $3$ 压栈的位置，发现可以将 $3$ 放在栈顶，此时栈顶为 $4$，所以 $f(3)=4$，然后将 $3$ 压栈</p>
-<p>栈中：$5(5),4(3),3(2)$</p>
-<hr>
-<p>$i=4$:</p>
-<p>我们考虑将 $3$ 压栈的位置，发现<strong>不</strong>可以将 $3$ 放在栈顶，因为将 $2$ 压栈，但是直接将 $2$ 压栈会导致栈中为：</p>
-<p>$5(5),4(4),3(2),2(4)$</p>
-<p><strong>不单调下降！</strong>，于是我们<strong>弹栈</strong>：将栈中每个小标所对应的元素（括号中的数）大于 $4$ 的数全部弹出</p>
-<p>此时的栈：</p>
-<p>$5(5)$</p>
-<p>此时栈顶为 $5$ ，所以 $f(2)=5$，再压入 $2$</p>
-<p>栈中：$5(5),2(4)$</p>
-<hr>
-<p>$i=5$:</p>
-<p>此时栈顶为 $2$ ，所以 $f(1)=2$，结束</p>
-<p>所以可以求出答案：</p>
-<p>$2,5,4,5,-1$</p>
-<h2 id="AC代码">AC代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn=<span class="hljs-number">3e6</span><span class="hljs-number">+5</span>;<br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> a[maxn],f[maxn];<br>stack&lt;<span class="hljs-type">int</span>&gt; S;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)    cin&gt;&gt;a[i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=n;i&gt;=<span class="hljs-number">1</span>;i--)&#123;<br>        <span class="hljs-keyword">while</span> (S.<span class="hljs-built_in">size</span>()&gt;<span class="hljs-number">0</span>&amp;&amp;a[S.<span class="hljs-built_in">top</span>()]&lt;=a[i])    S.<span class="hljs-built_in">pop</span>();<br>        <span class="hljs-keyword">if</span> (S.<span class="hljs-built_in">size</span>()&gt;<span class="hljs-number">0</span>) f[i]=S.<span class="hljs-built_in">top</span>();<br>        S.<span class="hljs-built_in">push</span>(i);<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)  cout&lt;&lt;f[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="后记–更改记录">后记–更改记录</h3>
-<p>update.$2025.8.4$ 完稿</p>
-<p>update.$2025.8.7$ 被打回，详细写了<strong>算法演示</strong>部分</p>
-
+          <h1>P1439 【模板】最长公共子序列</h1>
+<h2 id="思路">思路</h2>
+<p>对于两个为自然数 $1,2,\ldots,n$ 的排列，他们其中的元素是一样的，只有顺序不同。则可以通过结构体，记录每一个 $a_i$ 的下标,在对 $a_i$ 进行结构体排序。</p>
+<p>然后，就把问题转化成了 $ a[b[i]].id $ 的  LIS 。</p>
+<p>时间复杂度 $ O(n*(\log_2 n)) $</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ST</span>&#123;<br>	<span class="hljs-type">int</span> num,id;<br>&#125;a[<span class="hljs-number">100005</span>];<br><br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> dp[<span class="hljs-number">100005</span>],m,b[<span class="hljs-number">100005</span>];<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(ST x,ST y)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> x.num&lt;y.num;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		cin&gt;&gt;a[i].num;<br>		a[i].id=i;<br>	&#125;<br>	<span class="hljs-built_in">sort</span>(a<span class="hljs-number">+1</span>,a+n<span class="hljs-number">+1</span>,cmp);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)	cin&gt;&gt;b[i];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span> (i==<span class="hljs-number">1</span>||dp[m]&lt;a[b[i]].id)	dp[++m]=a[b[i]].id;<br>		<span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-type">int</span> l=<span class="hljs-number">1</span>,r=m,ans;<br>			<span class="hljs-keyword">while</span> (l&lt;=r)&#123;<br>				<span class="hljs-type">int</span> mid=(l+r)/<span class="hljs-number">2</span>;<br>				<span class="hljs-keyword">if</span> (dp[mid]&gt;=a[b[i]].id)&#123;<br>					ans=mid;<br>					r=mid<span class="hljs-number">-1</span>;<br>				&#125;<br>				<span class="hljs-keyword">else</span> &#123;<br>					l=mid<span class="hljs-number">+1</span>; <br>				&#125;<br>			&#125;<br>			dp[ans]=a[b[i]].id;<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;m;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="LIS">LIS</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> a[<span class="hljs-number">100000</span>]; <br><span class="hljs-type">int</span> dp[<span class="hljs-number">100000</span>],len;<br><span class="hljs-comment">//最大上升</span><br><span class="hljs-comment">// i==1||a[i]&gt;dp[len]</span><br><span class="hljs-comment">// lower_bound(dp+1,dp+len+1,a[i])-dp;//第一个大于等于的位置 a[i]&lt;=dp[?] </span><br> <br><span class="hljs-comment">//最大下降</span><br><span class="hljs-comment">// i==1||a[i]&lt;dp[len]</span><br><span class="hljs-comment">// lower_bound(dp+1,dp+len+1,a[i],greater&lt;int&gt;())-dp;//第一个小于等于的位置 a[i]&gt;=dp[?]</span><br><br><span class="hljs-comment">//最大不下降 </span><br><span class="hljs-comment">// i==1||a[i]&gt;=dp[len]</span><br><span class="hljs-comment">// upper_bound(dp+1,dp+len+1,a[i])-dp;//第一个大于的位置 a[i]&lt;dp[?] </span><br><br><span class="hljs-comment">//最大不上升 </span><br><span class="hljs-comment">// i==1||a[i]&lt;=dp[len]</span><br><span class="hljs-comment">// upper_bound(dp+1,dp+len+1,a[i],greater&lt;int&gt;())-dp; //第一个小于的位置 a[i]&gt;dp[?]</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(i==<span class="hljs-number">1</span>||a[i]&gt;dp[len])&#123; <br>			dp[++len]=a[i]; <br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			<span class="hljs-type">int</span> k=<span class="hljs-built_in">lower_bound</span>(dp<span class="hljs-number">+1</span>,dp+len<span class="hljs-number">+1</span>,a[i])-dp;<br>			dp[k]=a[i];<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;len; <br>&#125;<br><br><br><span class="hljs-comment">//lower_bound(dp+1,dp+len+1,a[i])-dp;//升序数组 中第一个大于等于的位置 </span><br><span class="hljs-comment">//lower_bound(dp+1,dp+len+1,a[i],greater&lt;int&gt;())-dp; //降序数组中 第一个小于等于的位置 </span><br></code></pre></td></tr></table></figure>
         </div>
         
         <!-- 文章导航 -->
         <nav class="post-nav">
           
-            <a class="prev" href="../../15/hello-world/">
+            <a class="prev" href="../../../07/23/%E4%BB%8E0%E5%88%B0inf%EF%BC%8C%E5%B8%A6%E4%BD%A0%E4%BA%86%E8%A7%A3%E6%9C%80%E7%9F%AD%E8%B7%AF/">
               <i class="fas fa-chevron-left"></i>
-              Hello World
-            </a>
-          
-          
-            <a class="next" href="../../../07/23/%E4%BB%8E0%E5%88%B0inf%EF%BC%8C%E5%B8%A6%E4%BD%A0%E4%BA%86%E8%A7%A3%E6%9C%80%E7%9F%AD%E8%B7%AF/">
               从0到inf，带你了解最短路
-              <i class="fas fa-chevron-right"></i>
             </a>
+          
           
         </nav>
       </article>
