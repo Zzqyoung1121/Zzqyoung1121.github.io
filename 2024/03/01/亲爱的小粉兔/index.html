@@ -3,7 +3,7 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>题解：P1439 【模板】最长公共子序列 | Hexo</title>
+  <title>亲爱的小粉兔--xht | Hexo</title>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../../css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -142,7 +142,7 @@
         <span>TABLE OF CONTENTS</span>
       </div>
       <div class="section-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">P1439 【模板】最长公共子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LIS"><span class="toc-text">LIS</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E5%8D%B3%E5%B0%86%E7%A6%BB%E4%BB%BB%E7%9A%84%E5%B0%8F%E7%B2%89%E5%85%94"><span class="toc-text">给即将离任的小粉兔</span></a></li></ol>
       </div>
     </div>
     
@@ -160,8 +160,8 @@
         
           <div class="tag-item">
             <i class="fas fa-tag"></i>
-            <a href="../../../../tags/%E9%A2%98%E8%A7%A3/">题解</a>
-            <span class="count">(2)</span>
+            <a href="../../../../tags/%E4%BC%91%E9%97%B2%C2%B7%E5%A8%B1%E4%B9%90/">休闲·娱乐</a>
+            <span class="count">(1)</span>
           </div>
         
       </div>
@@ -174,24 +174,24 @@
     <div class="tab-bar">
       <div class="tab active">
         <i class="fas fa-file-alt"></i>
-        <span>题解：P1439 【模板】最长公共子序列.md</span>
+        <span>亲爱的小粉兔--xht.md</span>
       </div>
     </div>
     
     <div class="content-area">
       <article class="post-content">
         <div class="post-header">
-          <h1>题解：P1439 【模板】最长公共子序列</h1>
+          <h1>亲爱的小粉兔--xht</h1>
           <div class="post-meta">
             <span class="date">
               <i class="fas fa-calendar-alt"></i>
-              2025-03-12
+              2024-03-01
             </span>            
             
               <span class="tags">
                 <i class="fas fa-tags"></i>
                 <div class="tags-list">
-                  <ul class="tag-item-post-list" itemprop="keywords"><li class="tag-item-post-list-item"><a class="tag-item-post-list-link" href="../../../../tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+                  <ul class="tag-item-post-list" itemprop="keywords"><li class="tag-item-post-list-item"><a class="tag-item-post-list-link" href="../../../../tags/%E4%BC%91%E9%97%B2%C2%B7%E5%A8%B1%E4%B9%90/" rel="tag">休闲·娱乐</a></li></ul>
                 </div>
               </span>
             
@@ -199,30 +199,44 @@
         </div>
         
         <div class="post-body vscode-markdown">
-          <h1>P1439 【模板】最长公共子序列</h1>
-<h2 id="思路">思路</h2>
-<p>对于两个为自然数 $1,2,\ldots,n$ 的排列，他们其中的元素是一样的，只有顺序不同。则可以通过结构体，记录每一个 $a_i$ 的下标,在对 $a_i$ 进行结构体排序。</p>
-<p>然后，就把问题转化成了 $ a_{b_i}.id $ 的  LIS 。</p>
-<p>时间复杂度 $ O(n\times(\log_2 n)) $</p>
-<h2 id="代码">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ST</span>&#123;<br>	<span class="hljs-type">int</span> num,id;<br>&#125;a[<span class="hljs-number">100005</span>];<br><br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> dp[<span class="hljs-number">100005</span>],m,b[<span class="hljs-number">100005</span>];<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(ST x,ST y)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> x.num&lt;y.num;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		cin&gt;&gt;a[i].num;<br>		a[i].id=i;<br>	&#125;<br>	<span class="hljs-built_in">sort</span>(a<span class="hljs-number">+1</span>,a+n<span class="hljs-number">+1</span>,cmp);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)	cin&gt;&gt;b[i];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span> (i==<span class="hljs-number">1</span>||dp[m]&lt;a[b[i]].id)	dp[++m]=a[b[i]].id;<br>		<span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-type">int</span> l=<span class="hljs-number">1</span>,r=m,ans;<br>			<span class="hljs-keyword">while</span> (l&lt;=r)&#123;<br>				<span class="hljs-type">int</span> mid=(l+r)/<span class="hljs-number">2</span>;<br>				<span class="hljs-keyword">if</span> (dp[mid]&gt;=a[b[i]].id)&#123;<br>					ans=mid;<br>					r=mid<span class="hljs-number">-1</span>;<br>				&#125;<br>				<span class="hljs-keyword">else</span> &#123;<br>					l=mid<span class="hljs-number">+1</span>; <br>				&#125;<br>			&#125;<br>			dp[ans]=a[b[i]].id;<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;m;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="LIS">LIS</h4>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span> a[<span class="hljs-number">100000</span>]; <br><span class="hljs-type">int</span> dp[<span class="hljs-number">100000</span>],len;<br><span class="hljs-comment">//最大上升</span><br><span class="hljs-comment">// i==1||a[i]&gt;dp[len]</span><br><span class="hljs-comment">// lower_bound(dp+1,dp+len+1,a[i])-dp;//第一个大于等于的位置 a[i]&lt;=dp[?] </span><br> <br><span class="hljs-comment">//最大下降</span><br><span class="hljs-comment">// i==1||a[i]&lt;dp[len]</span><br><span class="hljs-comment">// lower_bound(dp+1,dp+len+1,a[i],greater&lt;int&gt;())-dp;//第一个小于等于的位置 a[i]&gt;=dp[?]</span><br><br><span class="hljs-comment">//最大不下降 </span><br><span class="hljs-comment">// i==1||a[i]&gt;=dp[len]</span><br><span class="hljs-comment">// upper_bound(dp+1,dp+len+1,a[i])-dp;//第一个大于的位置 a[i]&lt;dp[?] </span><br><br><span class="hljs-comment">//最大不上升 </span><br><span class="hljs-comment">// i==1||a[i]&lt;=dp[len]</span><br><span class="hljs-comment">// upper_bound(dp+1,dp+len+1,a[i],greater&lt;int&gt;())-dp; //第一个小于的位置 a[i]&gt;dp[?]</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(i==<span class="hljs-number">1</span>||a[i]&gt;dp[len])&#123; <br>			dp[++len]=a[i]; <br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			<span class="hljs-type">int</span> k=<span class="hljs-built_in">lower_bound</span>(dp<span class="hljs-number">+1</span>,dp+len<span class="hljs-number">+1</span>,a[i])-dp;<br>			dp[k]=a[i];<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;len; <br>&#125;<br><br><br><span class="hljs-comment">//lower_bound(dp+1,dp+len+1,a[i])-dp;//升序数组 中第一个大于等于的位置 </span><br><span class="hljs-comment">//lower_bound(dp+1,dp+len+1,a[i],greater&lt;int&gt;())-dp; //降序数组中 第一个小于等于的位置 </span><br></code></pre></td></tr></table></figure>
+          <p>…</p>
+<p>根据上述材料，给将要离任的小粉兔写一篇小作文。</p>
+<p>ChatGPT</p>
+<p>亲爱的小粉兔：</p>
+<p>时光荏苒，眨眼间，你即将离开我们了。在这个告别的时刻，我想表达我对你的深深感激和最诚挚的祝福。</p>
+<p>回首我们一起度过的时光，你那魔怔而又独特的个性总是给我们带来无尽的乐趣。你的笑容、你的言行举止，总是让人忍俊不禁。无论是在工作中还是生活中，你总是能够以自己独特的方式照亮周围的一切。</p>
+<p>虽然有时你会显得有些优柔寡断，但正是这种特点让你更加人性化、更加接地气。你的执着，让我们见识到了你对于工作的认真和责任心。即便面对困难和挑战，你也从不轻言放弃，而是坚定地追求着自己的目标。</p>
+<p>在你离开之际，我想对你说声谢谢。谢谢你为我们带来的欢笑和快乐，谢谢你为我们所做的一切努力和付出。虽然我们将会想念你，但我们也相信你在新的起点将会迎来更加美好的未来。</p>
+<p>愿你在新的旅程中，保持魔怔的笑容，保持优柔寡断的坚持，保持执着的追求。愿你的人生之路，一帆风顺，充满阳光与希望。</p>
+<p>再见了，亲爱的小粉兔。祝你一切都好。</p>
+<p>真诚的，[你的名字]</p>
+<p>转载自 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/6utit8ux">xht</a></p>
+<p>根据上述材料，给将要离任的小粉兔写一篇小作文。</p>
+<p>DeepSeek-R1</p>
+<p>嗯，用户要求我根据材料为即将离任的小粉兔写一篇小作文。材料中描述的小粉兔有&quot;魔怔又独特&quot;“优柔寡断”&quot;执着&quot;等特点，用户提供的示例作文已经很好地展现了这些特质。</p>
+<p>我注意到用户给的示例作文写得挺感人的，用了不少温暖的语言表达感谢和祝福。看来用户希望我能写一篇类似风格但更丰富的小作文，重点突出小粉兔的个性特点和贡献。</p>
+<p>用户可能希望这篇小作文能用于告别场合，比如在送别会或纪念册上使用。语气应该真挚温暖，带点文艺感但不要太正式。可以加入一些具体的场景描写，比如&quot;茶水间飘着咖啡香&quot;这样的细节，让文字更有画面感。</p>
+<p>小粉兔的个性很鲜明：&quot;魔怔&quot;可以理解为活泼有趣，&quot;优柔寡断&quot;说明他做事谨慎，&quot;执着&quot;则体现他的坚持。这些特点都要在作文中自然展现，不要变成简单的标签罗列。</p>
+<p>结构上可以这样安排：开头表达不舍，中间回忆具体事例展现个性，最后送上祝福。要注意避免过于伤感，保持温暖积极的基调。可以用&quot;胡萝卜便签&quot;这样的细节来体现独特性，比单纯说&quot;你很特别&quot;更有说服力。</p>
+<p>用户给的示例中有些句子写得很好，比如&quot;用魔怔点亮日常，用优柔酝酿思考，用执着浇筑热爱&quot;，这种排比句很有力量。我可以借鉴这种写法，但要用不同的表达方式。祝福语部分要避免套话，最好能呼应前文提到的个性特点。</p>
+<p>对了，还要注意篇幅控制。用户给的示例大约300字，这个长度比较合适，既能表达情感又不会太长。最后落款用&quot;全体伙伴&quot;比个人署名更合适，因为看起来是代表团队写的告别信。</p>
+<h2 id="给即将离任的小粉兔">给即将离任的小粉兔</h2>
+<p>小粉兔，当告别的风终于吹至门前，茶水间里飘着咖啡香，却忽然掺进了一丝不易察觉的涩味。我们心中纵然有万般不舍，此刻亦只能以最真挚的言语为你送行。</p>
+<p>你存在的日子，本身就是一幅奇趣的涂鸦——那“魔怔”的灵光一闪常如闪电划破沉闷，而“优柔”的思虑又如细雨，耐心浸润着每个待解的难题。你像一位持灯的漫步者，在“执着”的驱动下，不倦地叩问每一扇未知的门扉，将看似微小的光芒聚拢成可贵的暖意。那一次，项目陷入泥沼，是你用近乎“魔怔”的巧思，将僵局点化成了机遇；当众人犹疑，又是你“优柔”下的反复斟酌，为前路铺就了踏实的路基；最终，也唯有你那份不熄的“执着”，将混沌的蓝图浇铸成了清晰的现实。你以独特的方式，默默雕刻着团队日常的质地与温度。</p>
+<p>离别虽在眼前，但你留下的并非虚空。那些欢笑、那些探求的轨迹、那些温柔的坚持，已如星辰嵌入我们记忆的夜空。它们不仅是我们前行的路标，更是你存在过的永恒证词——如同你曾悄悄贴在大家屏幕边缘的胡萝卜便签，提醒着笨拙世界里那份未被磨灭的纯真与热望。</p>
+<p>愿你今后每一步，都踏在属于你的柔软草甸上。请继续以那独一无二的姿态前行：用魔怔点亮日常，用优柔酝酿思考，用执着浇筑热爱。请相信，你此去山高水长，身后总有星光映照——那是我们永不熄灭的祝福目光，在时间深处为你低语：</p>
+<p><strong>愿君前路，常有星光低语；纵行千里，犹有故园灯明。</strong></p>
+
         </div>
         
         <!-- 文章导航 -->
         <nav class="post-nav">
           
-            <a class="prev" href="../../../07/23/%E4%BB%8E0%E5%88%B0inf%EF%BC%8C%E5%B8%A6%E4%BD%A0%E4%BA%86%E8%A7%A3%E6%9C%80%E7%9F%AD%E8%B7%AF/">
+            <a class="prev" href="../../../../2025/03/12/%E9%A2%98%E8%A7%A3%EF%BC%9AP1439%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/">
               <i class="fas fa-chevron-left"></i>
-              从0到inf，带你了解最短路
+              题解：P1439 【模板】最长公共子序列
             </a>
           
-          
-            <a class="next" href="../../../../2024/03/01/%E4%BA%B2%E7%88%B1%E7%9A%84%E5%B0%8F%E7%B2%89%E5%85%94/">
-              亲爱的小粉兔--xht
-              <i class="fas fa-chevron-right"></i>
-            </a>
           
         </nav>
       </article>
