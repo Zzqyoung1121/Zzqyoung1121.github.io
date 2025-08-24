@@ -169,7 +169,7 @@
           <div class="tag-item active">
             <i class="fas fa-tag"></i>
             <a href="">题解</a>
-            <span class="count">(2)</span>
+            <span class="count">(3)</span>
           </div>
         
       </div>
@@ -191,10 +191,54 @@
           <i class="fas fa-tag"></i>
           Tag: 题解
         </h1>
-        <span class="tag-count">2 posts</span>
+        <span class="tag-count">3 posts</span>
       </div>
 
       <div class="posts-container">
+        
+          <div class="post-card">
+            <div class="post-header">
+              <i class="fas fa-file-alt"></i>
+              <span class="post-title">
+                <a href="../../2025/08/24/%E9%A2%98%E8%A7%A3%EF%BC%9AP5490%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%89%AB%E6%8F%8F%E7%BA%BF%20&%20%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/">题解：P5490 【模板】扫描线 &amp; 矩形面积并</a>
+              </span>
+            </div>
+            
+            <div class="post-meta">
+              <span class="date">
+                <i class="fas fa-calendar-alt"></i>
+                2025-08-24
+              </span>
+              
+            </div>
+            
+            <div class="post-excerpt">
+              参考资料：
+ls学习笔记note37:扫描线(Line Sweep Algorithm)
+扫描线 - OI Wiki
+前置知识：
+线段树 - OI Wiki
+话不多说，我们开始。
+题目分析
+阅读题目，我们就会发现这道题求的是
+求 $n$ 个四边平行于坐标轴的矩形的面积并。
+矩形的面积好求，但不好办的是重叠部分的面积。
+比如这三个矩形：
+
+那么他要求的实际上是：
+
+然后我们就会想到对他进行分割：
+
+...
+            </div>
+            
+            <div class="post-footer">
+              <a href="../../2025/08/24/%E9%A2%98%E8%A7%A3%EF%BC%9AP5490%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%89%AB%E6%8F%8F%E7%BA%BF%20&%20%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/" class="read-more">
+                <i class="fas fa-code"></i>
+                Read More
+              </a>
+            </div>
+          </div>
         
           <div class="post-card">
             <div class="post-header">
